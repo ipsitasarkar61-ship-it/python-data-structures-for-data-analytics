@@ -1,0 +1,26 @@
+def is_anagram(s: str, t: str) -> bool:
+    # If lengths are different, they cannot be anagrams
+    if len(s) != len(t):
+        return False
+
+    char_count = {}
+
+    # Count characters in first string
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+
+    # Decrease count using second string
+    for char in t:
+        if char not in char_count:
+            return False
+        char_count[char] -= 1
+        if char_count[char] < 0:
+            return False
+
+    return True
+
+
+# Example
+s = "listen"
+t = "silent"
+print(is_anagram(s, t))  # Output: True
